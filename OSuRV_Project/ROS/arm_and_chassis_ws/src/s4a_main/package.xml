@@ -1,0 +1,21 @@
+<package>
+	<name>s4a_main</name>
+	<version>0.1.0</version>
+	<description>
+		Small 4-DOF robotic arm.
+	</description>
+	<maintainer email="milos.subotic.sm@gmail.com">Milos Subotic</maintainer>
+	<author email="milos.subotic.sm@gmail.com">Milos Subotic</author>
+	<license>Proprietary</license>
+
+	<buildtool_depend>catkin</buildtool_depend>
+	<build_depend>roscpp</build_depend>
+	<build_depend>rospy</build_depend>
+	<build_depend>controller_manager</build_depend>
+	<build_depend>srdfdom</build_depend>
+	<run_depend>roscpp</run_depend>
+	<run_depend>rospy</run_depend>
+	<run_depend>controller_manager</run_depend>
+	<run_depend>srdfdom</run_depend>
+
+</package>

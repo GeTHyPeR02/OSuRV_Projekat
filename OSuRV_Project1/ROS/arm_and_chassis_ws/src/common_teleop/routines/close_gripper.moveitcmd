@@ -1,0 +1,3 @@
+use hand
+%include _common.moveitcmd
+go closed_gripper

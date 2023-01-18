@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+	<name>s4a_teleop</name>
+	<version>0.1.0</version>
+	<description>
+		Teleop for small 4-DOF robotic arm.
+	</description>
+	<maintainer email="milos.subotic.sm@gmail.com">Milos Subotic</maintainer>
+	<author email="milos.subotic.sm@gmail.com">Milos Subotic</author>
+	<license>Proprietary</license>
+
+	<buildtool_depend>catkin</buildtool_depend>
+	<build_depend>rospy</build_depend>
+	<build_depend>roscpp</build_depend>
+	<build_depend>geometry_msgs</build_depend>
+
+	<build_depend>moveit_servo</build_depend>
+	<run_depend>rospy</run_depend>
+	<run_depend>roscpp</run_depend>
+	<run_depend>geometry_msgs</run_depend>
+	<run_depend>moveit_servo</run_depend>
+	
+
+</package>

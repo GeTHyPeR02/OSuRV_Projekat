@@ -1,0 +1,4 @@
+
+manual_teleop.launch
+	OTHER_T ../common_teleop/routines_teleop.launch
+	manual_teleop

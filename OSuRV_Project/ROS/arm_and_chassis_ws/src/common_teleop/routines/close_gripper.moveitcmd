@@ -1,0 +1,6 @@
+use arm
+%include r1.moveitcmd
+go p1
+wait 5
+use hand
+go x

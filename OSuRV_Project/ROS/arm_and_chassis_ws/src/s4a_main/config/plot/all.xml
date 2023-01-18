@@ -1,0 +1,525 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root>
+ <tabbed_widget name="Main Window" parent="main_window">
+  <Tab tab_name="joints_fb" containers="1">
+   <Container>
+    <DockSplitter count="3" sizes="0.333699;0.332602;0.333699" orientation="-">
+     <DockArea name="state eff">
+      <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+       <range top="0.100000" left="0.013072" bottom="-0.100000" right="52.546734"/>
+       <limitY/>
+       <curve name="/joint_states/joint0_shoulder_pan/effort" color="#d62728"/>
+       <curve name="/joint_states/joint1_shoulder_lift/effort" color="#1ac938"/>
+       <curve name="/joint_states/joint2_elbow/effort" color="#1f77b4"/>
+       <curve name="/joint_states/joint3_index_finger/effort" color="#ff7f0e"/>
+      </plot>
+     </DockArea>
+     <DockArea name="state pos">
+      <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+       <range top="1.629705" left="0.013072" bottom="-0.844305" right="52.546734"/>
+       <limitY/>
+       <curve name="/joint_states/joint0_shoulder_pan/position" color="#d62728"/>
+       <curve name="/joint_states/joint1_shoulder_lift/position" color="#1ac938"/>
+       <curve name="/joint_states/joint2_elbow/position" color="#1f77b4"/>
+       <curve name="/joint_states/joint3_index_finger/position" color="#ff7f0e"/>
+      </plot>
+     </DockArea>
+     <DockArea name="state vel">
+      <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+       <range top="0.100000" left="0.013072" bottom="-0.100000" right="52.546734"/>
+       <limitY/>
+       <curve name="/joint_states/joint0_shoulder_pan/velocity" color="#d62728"/>
+       <curve name="/joint_states/joint1_shoulder_lift/velocity" color="#1ac938"/>
+       <curve name="/joint_states/joint2_elbow/velocity" color="#1f77b4"/>
+       <curve name="/joint_states/joint3_index_finger/velocity" color="#ff7f0e"/>
+      </plot>
+     </DockArea>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <Tab tab_name="joints pub" containers="1">
+   <Container>
+    <DockSplitter count="3" sizes="0.35;0.35;0.3" orientation="-">
+     <DockArea name="acc">
+      <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+       <range top="0.100000" left="0.008428" bottom="-0.100000" right="42.043310"/>
+       <limitY/>
+       <curve name="/s4a/joint_states/acc/data.0" color="#d62728"/>
+       <curve name="/s4a/joint_states/acc/data.1" color="#1ac938"/>
+       <curve name="/s4a/joint_states/acc/data.2" color="#1f77b4"/>
+       <curve name="/s4a/joint_states/acc/data.3" color="#ff7f0e"/>
+       <curve name="/s4a/joint_states/acc/data.4" color="#f14cc1"/>
+       <curve name="/s4a/joint_states/acc/data.5" color="#9467bd"/>
+      </plot>
+     </DockArea>
+     <DockArea name="eff_clamp">
+      <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+       <range top="0.100000" left="0.008428" bottom="-0.100000" right="42.043310"/>
+       <limitY/>
+       <curve name="/s4a/joint_states/eff_clamp/data.0" color="#d62728"/>
+       <curve name="/s4a/joint_states/eff_clamp/data.1" color="#1ac938"/>
+       <curve name="/s4a/joint_states/eff_clamp/data.2" color="#1f77b4"/>
+       <curve name="/s4a/joint_states/eff_clamp/data.3" color="#ff7f0e"/>
+       <curve name="/s4a/joint_states/eff_clamp/data.4" color="#f14cc1"/>
+       <curve name="/s4a/joint_states/eff_clamp/data.5" color="#9467bd"/>
+      </plot>
+     </DockArea>
+     <DockArea name="pos_glitch">
+      <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+       <range top="0.100000" left="0.008428" bottom="-0.100000" right="42.043310"/>
+       <limitY/>
+       <curve name="/s4a/joint_states/pos_glitch/data.0" color="#d62728"/>
+       <curve name="/s4a/joint_states/pos_glitch/data.1" color="#1ac938"/>
+       <curve name="/s4a/joint_states/pos_glitch/data.2" color="#1f77b4"/>
+       <curve name="/s4a/joint_states/pos_glitch/data.3" color="#ff7f0e"/>
+       <curve name="/s4a/joint_states/pos_glitch/data.4" color="#f14cc1"/>
+       <curve name="/s4a/joint_states/pos_glitch/data.5" color="#9467bd"/>
+      </plot>
+     </DockArea>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <Tab tab_name="delta_twist_commands" containers="1">
+   <Container>
+    <DockSplitter count="2" sizes="0.5;0.5" orientation="-">
+     <DockArea name="servo_server">
+      <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+       <range top="0.100000" left="0.008428" bottom="-0.100000" right="42.043310"/>
+       <limitY/>
+       <curve name="/servo_server/delta_twist_cmds/twist/linear/x" color="#d62728"/>
+       <curve name="/servo_server/delta_twist_cmds/twist/linear/y" color="#1ac938"/>
+       <curve name="/servo_server/delta_twist_cmds/twist/linear/z" color="#1f77b4"/>
+      </plot>
+     </DockArea>
+     <DockArea name="vision_teleop">
+      <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+       <range top="0.100000" left="0.008428" bottom="-0.100000" right="42.043310"/>
+       <limitY/>
+       <curve name="/vision_teleop/delta_twist_cmds/twist/linear/x" color="#d62728"/>
+       <curve name="/vision_teleop/delta_twist_cmds/twist/linear/y" color="#1ac938"/>
+       <curve name="/vision_teleop/delta_twist_cmds/twist/linear/z" color="#1f77b4"/>
+      </plot>
+     </DockArea>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <Tab tab_name="tf" containers="1">
+   <Container>
+    <DockSplitter count="3" sizes="0.35;0.35;0.3" orientation="-">
+     <DockSplitter count="2" sizes="0.5;0.5" orientation="|">
+      <DockArea name="...">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="0.214099" left="0.008428" bottom="0.014099" right="42.043310"/>
+        <limitY/>
+        <curve name="/tf_publish/beam00_base__to__beam2_hand_ee/twist/linear/x" color="#d62728"/>
+       </plot>
+      </DockArea>
+      <DockArea name="...">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="Lines">
+        <range top="0.100000" left="0.008428" bottom="-0.100000" right="42.043310"/>
+        <limitY/>
+        <curve name="/tf_publish/beam00_base__to__beam2_hand_ee/twist/angular/x" color="#d62728"/>
+       </plot>
+      </DockArea>
+     </DockSplitter>
+     <DockSplitter count="2" sizes="0.5;0.5" orientation="|">
+      <DockArea name="...">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="-0.066881" left="0.008428" bottom="-0.266881" right="42.043310"/>
+        <limitY/>
+        <curve name="/tf_publish/beam00_base__to__beam2_hand_ee/twist/linear/y" color="#1ac938"/>
+       </plot>
+      </DockArea>
+      <DockArea name="...">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="Lines">
+        <range top="0.100004" left="0.008428" bottom="-0.099996" right="42.043310"/>
+        <limitY/>
+        <curve name="/tf_publish/beam00_base__to__beam2_hand_ee/twist/angular/y" color="#1ac938"/>
+       </plot>
+      </DockArea>
+     </DockSplitter>
+     <DockSplitter count="2" sizes="0.5;0.5" orientation="|">
+      <DockArea name="...">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="Lines">
+        <range top="0.907754" left="0.008428" bottom="0.707754" right="42.043310"/>
+        <limitY/>
+        <curve name="/tf_publish/beam00_base__to__beam2_hand_ee/twist/linear/z" color="#1f77b4"/>
+       </plot>
+      </DockArea>
+      <DockArea name="...">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="Lines">
+        <range top="-0.685400" left="0.008428" bottom="-0.885400" right="42.043310"/>
+        <limitY/>
+        <curve name="/tf_publish/beam00_base__to__beam2_hand_ee/twist/angular/z" color="#1f77b4"/>
+       </plot>
+      </DockArea>
+     </DockSplitter>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <Tab tab_name="servo pos" containers="1">
+   <Container>
+    <DockSplitter count="4" sizes="0.250549;0.249451;0.250549;0.249451" orientation="-">
+     <DockArea name="joint0">
+      <plot flip_y="false" mode="TimeSeries" flip_x="false" style="Lines">
+       <range top="-0.685400" left="0.008428" bottom="-0.885400" right="42.043310"/>
+       <limitY/>
+       <curve name="/s4a/servo_pos_ctrl/command/data.0" color="#d62728"/>
+       <curve name="/joint_states/joint0_shoulder_pan/position" color="#1ac938"/>
+      </plot>
+     </DockArea>
+     <DockArea name="joint1">
+      <plot flip_y="false" mode="TimeSeries" flip_x="false" style="Lines">
+       <range top="0.885400" left="0.008428" bottom="0.685400" right="42.043310"/>
+       <limitY/>
+       <curve name="/s4a/servo_pos_ctrl/command/data.1" color="#d62728"/>
+       <curve name="/joint_states/joint1_shoulder_lift/position" color="#1ac938"/>
+      </plot>
+     </DockArea>
+     <DockArea name="joint2">
+      <plot flip_y="false" mode="TimeSeries" flip_x="false" style="Lines">
+       <range top="1.670800" left="0.008428" bottom="1.470800" right="42.043310"/>
+       <limitY/>
+       <curve name="/s4a/servo_pos_ctrl/command/data.2" color="#d62728"/>
+       <curve name="/joint_states/joint2_elbow/position" color="#1ac938"/>
+      </plot>
+     </DockArea>
+     <DockArea name="joint3">
+      <plot flip_y="false" mode="TimeSeries" flip_x="false" style="Lines">
+       <range top="-0.685400" left="0.008428" bottom="-0.885400" right="42.043310"/>
+       <limitY/>
+       <curve name="/s4a/servo_pos_ctrl/command/data.3" color="#d62728"/>
+       <curve name="/joint_states/joint3_index_finger/position" color="#1ac938"/>
+      </plot>
+     </DockArea>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <Tab tab_name="servo traj" containers="1">
+   <Container>
+    <DockSplitter count="4" sizes="0.250549;0.249451;0.250549;0.249451" orientation="-">
+     <DockSplitter count="2" sizes="0.500334;0.499666" orientation="|">
+      <DockArea name="joint0">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="Lines">
+        <range top="-0.685400" left="0.008428" bottom="-0.885400" right="55.603234"/>
+        <limitY/>
+        <curve name="/s4a/traj_pos_ctrl/arm/command/points.0/positions.0" color="#d62728"/>
+        <curve name="/joint_states/joint0_shoulder_pan/position" color="#1ac938"/>
+       </plot>
+      </DockArea>
+      <DockArea name="...">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="Lines">
+        <range top="0.100000" left="0.008428" bottom="-0.100000" right="55.603234"/>
+        <limitY/>
+        <curve name="/s4a/traj_pos_ctrl/arm/command/points.0/velocities.0" color="#d62728"/>
+        <curve name="/joint_states/joint0_shoulder_pan/velocity" color="#1ac938"/>
+       </plot>
+      </DockArea>
+     </DockSplitter>
+     <DockSplitter count="2" sizes="0.500334;0.499666" orientation="|">
+      <DockArea name="joint1">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="Lines">
+        <range top="0.885400" left="0.008428" bottom="0.685400" right="55.603234"/>
+        <limitY/>
+        <curve name="/s4a/traj_pos_ctrl/arm/command/points.0/positions.1" color="#d62728"/>
+        <curve name="/joint_states/joint1_shoulder_lift/position" color="#1ac938"/>
+       </plot>
+      </DockArea>
+      <DockArea name="...">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="Lines">
+        <range top="0.100000" left="0.008428" bottom="-0.100000" right="55.603234"/>
+        <limitY/>
+        <curve name="/s4a/traj_pos_ctrl/arm/command/points.0/velocities.1" color="#d62728"/>
+        <curve name="/joint_states/joint1_shoulder_lift/velocity" color="#1ac938"/>
+       </plot>
+      </DockArea>
+     </DockSplitter>
+     <DockSplitter count="2" sizes="0.500334;0.499666" orientation="|">
+      <DockArea name="joint2">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="Lines">
+        <range top="1.670800" left="0.008428" bottom="1.470800" right="55.603234"/>
+        <limitY/>
+        <curve name="/s4a/traj_pos_ctrl/arm/command/points.0/positions.2" color="#d62728"/>
+        <curve name="/joint_states/joint2_elbow/position" color="#1ac938"/>
+       </plot>
+      </DockArea>
+      <DockArea name="...">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="Lines">
+        <range top="0.100000" left="0.008428" bottom="-0.100000" right="55.603234"/>
+        <limitY/>
+        <curve name="/s4a/traj_pos_ctrl/arm/command/points.0/velocities.2" color="#d62728"/>
+        <curve name="/joint_states/joint2_elbow/velocity" color="#1ac938"/>
+       </plot>
+      </DockArea>
+     </DockSplitter>
+     <DockSplitter count="2" sizes="0.500334;0.499666" orientation="|">
+      <DockArea name="joint3">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="Lines">
+        <range top="-0.685400" left="0.008428" bottom="-0.885400" right="55.603234"/>
+        <limitY/>
+        <curve name="/s4a/traj_pos_ctrl/arm/command/points.0/positions.3" color="#d62728"/>
+        <curve name="/joint_states/joint3_index_finger/position" color="#1ac938"/>
+       </plot>
+      </DockArea>
+      <DockArea name="...">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="Lines">
+        <range top="0.100000" left="0.008428" bottom="-0.100000" right="55.603234"/>
+        <limitY/>
+        <curve name="/s4a/traj_pos_ctrl/arm/command/points.0/velocities.3" color="#d62728"/>
+        <curve name="/joint_states/joint3_index_finger/velocity" color="#1ac938"/>
+       </plot>
+      </DockArea>
+     </DockSplitter>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <Tab tab_name="traj state" containers="1">
+   <Container>
+    <DockSplitter count="3" sizes="0.35;0.35;0.3" orientation="-">
+     <DockSplitter count="2" sizes="0.5;0.5" orientation="|">
+      <DockArea name="pos actual">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="1.000000" left="0.000000" bottom="0.000000" right="1.000000"/>
+        <limitY/>
+       </plot>
+      </DockArea>
+      <DockArea name="pos desired">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="1.000000" left="0.000000" bottom="0.000000" right="1.000000"/>
+        <limitY/>
+       </plot>
+      </DockArea>
+     </DockSplitter>
+     <DockSplitter count="2" sizes="0.5;0.5" orientation="|">
+      <DockArea name="vel actual">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="1.000000" left="0.000000" bottom="0.000000" right="1.000000"/>
+        <limitY/>
+       </plot>
+      </DockArea>
+      <DockArea name="vel desired">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="1.000000" left="0.000000" bottom="0.000000" right="1.000000"/>
+        <limitY/>
+       </plot>
+      </DockArea>
+     </DockSplitter>
+     <DockSplitter count="2" sizes="0.5;0.5" orientation="|">
+      <DockArea name="...">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="1.000000" left="0.000000" bottom="0.000000" right="1.000000"/>
+        <limitY/>
+       </plot>
+      </DockArea>
+      <DockArea name="accel desired">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="1.000000" left="0.000000" bottom="0.000000" right="1.000000"/>
+        <limitY/>
+       </plot>
+      </DockArea>
+     </DockSplitter>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <Tab tab_name="traj fb" containers="1">
+   <Container>
+    <DockSplitter count="3" sizes="0.35;0.35;0.3" orientation="-">
+     <DockSplitter count="2" sizes="0.5;0.5" orientation="|">
+      <DockArea name="pos actual">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="1.000000" left="0.000000" bottom="0.000000" right="1.000000"/>
+        <limitY/>
+       </plot>
+      </DockArea>
+      <DockArea name="pos desired">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="1.000000" left="0.000000" bottom="0.000000" right="1.000000"/>
+        <limitY/>
+       </plot>
+      </DockArea>
+     </DockSplitter>
+     <DockSplitter count="2" sizes="0.5;0.5" orientation="|">
+      <DockArea name="vel actual">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="1.000000" left="0.000000" bottom="0.000000" right="1.000000"/>
+        <limitY/>
+       </plot>
+      </DockArea>
+      <DockArea name="vel desired">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="1.000000" left="0.000000" bottom="0.000000" right="1.000000"/>
+        <limitY/>
+       </plot>
+      </DockArea>
+     </DockSplitter>
+     <DockSplitter count="2" sizes="0.5;0.5" orientation="|">
+      <DockArea name="...">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="1.000000" left="0.000000" bottom="0.000000" right="1.000000"/>
+        <limitY/>
+       </plot>
+      </DockArea>
+      <DockArea name="accel desired">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="1.000000" left="0.000000" bottom="0.000000" right="1.000000"/>
+        <limitY/>
+       </plot>
+      </DockArea>
+     </DockSplitter>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <Tab tab_name="traj fb err" containers="1">
+   <Container>
+    <DockSplitter count="2" sizes="0.5;0.5" orientation="-">
+     <DockArea name="pos err">
+      <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+       <range top="0.100000" left="0.008428" bottom="-0.100000" right="42.043310"/>
+       <limitY/>
+       <curve name="/s4a/traj_pos_ctrl/arm/follow_joint_trajectory/feedback/feedback/error/positions.0" color="#1f77b4"/>
+       <curve name="/s4a/traj_pos_ctrl/arm/follow_joint_trajectory/feedback/feedback/error/positions.1" color="#d62728"/>
+       <curve name="/s4a/traj_pos_ctrl/arm/follow_joint_trajectory/feedback/feedback/error/positions.2" color="#1ac938"/>
+       <curve name="/s4a/traj_pos_ctrl/arm/follow_joint_trajectory/feedback/feedback/error/positions.3" color="#ff7f0e"/>
+      </plot>
+     </DockArea>
+     <DockArea name="vel err">
+      <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+       <range top="0.100000" left="0.008428" bottom="-0.100000" right="42.043310"/>
+       <limitY/>
+       <curve name="/s4a/traj_pos_ctrl/arm/follow_joint_trajectory/feedback/feedback/error/velocities.0" color="#1f77b4"/>
+       <curve name="/s4a/traj_pos_ctrl/arm/follow_joint_trajectory/feedback/feedback/error/velocities.1" color="#d62728"/>
+       <curve name="/s4a/traj_pos_ctrl/arm/follow_joint_trajectory/feedback/feedback/error/velocities.2" color="#1ac938"/>
+       <curve name="/s4a/traj_pos_ctrl/arm/follow_joint_trajectory/feedback/feedback/error/velocities.3" color="#ff7f0e"/>
+      </plot>
+     </DockArea>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <Tab tab_name="traj fb track joint0_shoulder_pan" containers="1">
+   <Container>
+    <DockSplitter count="3" sizes="0.35;0.35;0.3" orientation="-">
+     <DockSplitter count="2" sizes="0.5;0.5" orientation="|">
+      <DockArea name="pos actual vs desired">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="1.000000" left="0.000000" bottom="0.000000" right="1.000000"/>
+        <limitY/>
+       </plot>
+      </DockArea>
+      <DockArea name="pos err">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="0.100000" left="0.008428" bottom="-0.100000" right="42.043310"/>
+        <limitY/>
+        <curve name="/s4a/traj_pos_ctrl/arm/follow_joint_trajectory/feedback/feedback/error/positions.0" color="#1f77b4"/>
+       </plot>
+      </DockArea>
+     </DockSplitter>
+     <DockSplitter count="2" sizes="0.5;0.5" orientation="|">
+      <DockArea name="vel actual vs desired">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="1.000000" left="0.000000" bottom="0.000000" right="1.000000"/>
+        <limitY/>
+       </plot>
+      </DockArea>
+      <DockArea name="vel err">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="0.100000" left="0.008428" bottom="-0.100000" right="42.043310"/>
+        <limitY/>
+        <curve name="/s4a/traj_pos_ctrl/arm/follow_joint_trajectory/feedback/feedback/error/velocities.0" color="#1f77b4"/>
+       </plot>
+      </DockArea>
+     </DockSplitter>
+     <DockArea name="...">
+      <plot flip_y="false" mode="TimeSeries" flip_x="false" style="Lines">
+       <range top="1.000000" left="0.000000" bottom="0.000000" right="1.000000"/>
+       <limitY/>
+      </plot>
+     </DockArea>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <Tab tab_name="traj fb track joint3_index_finger" containers="1">
+   <Container>
+    <DockSplitter count="3" sizes="0.35;0.35;0.3" orientation="-">
+     <DockSplitter count="2" sizes="0.5;0.5" orientation="|">
+      <DockArea name="pos actual vs desired">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="1.000000" left="0.000000" bottom="0.000000" right="1.000000"/>
+        <limitY/>
+       </plot>
+      </DockArea>
+      <DockArea name="pos err">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="0.100000" left="0.008428" bottom="-0.100000" right="42.043310"/>
+        <limitY/>
+        <curve name="/s4a/traj_pos_ctrl/arm/follow_joint_trajectory/feedback/feedback/error/positions.3" color="#1f77b4"/>
+       </plot>
+      </DockArea>
+     </DockSplitter>
+     <DockSplitter count="2" sizes="0.5;0.5" orientation="|">
+      <DockArea name="vel actual vs desired">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="1.000000" left="0.000000" bottom="0.000000" right="1.000000"/>
+        <limitY/>
+       </plot>
+      </DockArea>
+      <DockArea name="vel err">
+       <plot flip_y="false" mode="TimeSeries" flip_x="false" style="LinesAndDots">
+        <range top="0.100000" left="0.008428" bottom="-0.100000" right="42.043310"/>
+        <limitY/>
+        <curve name="/s4a/traj_pos_ctrl/arm/follow_joint_trajectory/feedback/feedback/error/velocities.3" color="#1f77b4"/>
+       </plot>
+      </DockArea>
+     </DockSplitter>
+     <DockArea name="...">
+      <plot flip_y="false" mode="TimeSeries" flip_x="false" style="Lines">
+       <range top="1.000000" left="0.000000" bottom="0.000000" right="1.000000"/>
+       <limitY/>
+      </plot>
+     </DockArea>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <currentTabIndex index="5"/>
+ </tabbed_widget>
+ <use_relative_time_offset enabled="1"/>
+ <!-- - - - - - - - - - - - - - - -->
+ <!-- - - - - - - - - - - - - - - -->
+ <Plugins>
+  <plugin ID="DataLoad CSV">
+   <default time_axis="" delimiter="0"/>
+  </plugin>
+  <plugin ID="DataLoad ROS bags">
+   <use_header_stamp value="false"/>
+   <discard_large_arrays value="true"/>
+   <max_array_size value="100"/>
+   <boolean_strings_to_number value="false"/>
+   <remove_suffix_from_strings value="false"/>
+  </plugin>
+  <plugin ID="DataLoad ULog"/>
+  <plugin ID="ROS Topic Subscriber">
+   <use_header_stamp value="false"/>
+   <discard_large_arrays value="true"/>
+   <max_array_size value="100"/>
+   <boolean_strings_to_number value="false"/>
+   <remove_suffix_from_strings value="false"/>
+  </plugin>
+  <plugin ID="UDP Server"/>
+  <plugin ID="WebSocket Server"/>
+  <plugin ID="Fast Fourier Transform"/>
+  <plugin ID="Quaternion to RPY"/>
+  <plugin ID="Reactive Script Editor">
+   <library code="--[[ Helper function to create a ScatterXY series from arrays.&#xa;&#xa; series_name: name of the created ScatterXY series&#xa; prefix:      prefix of the timeseries, before the index of the array&#xa; suffix_X:   suffix to complete the name of the series containing the X value.&#xa;             if [nil], the index of the array will be used.&#xa; suffix_Y:   suffix to complete the name of the series containing the Y value&#xa; timestamp:   usually the tracker_time variable&#xa;              &#xa; Example:&#xa; &#xa; Assuming we have multiple series in the form:&#xa; &#xa;   /trajectory/node.{N}/position/x&#xa;   /trajectory/node.{N}/position/y&#xa;   &#xa; where {N} is the index of the array (integer). We can create a reactive series from the array with:&#xa; &#xa;   CreateSeriesFromArray( &quot;my_trajectory&quot;, &quot;/trajectory/node&quot;,  &quot;position/x&quot;, &quot;position/y&quot;, tracker_time );&#xa;]]--&#xa;&#xa;function CreateSeriesFromArray( series_name, prefix, suffix_X, suffix_Y, timestamp )&#xa;  --- create a new series or overwite the previous one&#xa;  new_series = MutableScatterXY.new(series_name)&#xa;  &#xa;  --- Append points to new_series&#xa;  index = 0&#xa;  while(true) do&#xa;&#xa;    x = index;&#xa;    -- if not nil, get the X coordinate from a series&#xa;    if suffix_X ~= nil then &#xa;      series_x = TimeseriesView.find( string.format( &quot;%s.%d/%s&quot;, prefix, index, suffix_X) )&#xa;      if series_x == nil then break end&#xa;      x = series_x:atTime(timestamp)&#x9; &#xa;    end&#xa;    &#xa;    series_y = TimeseriesView.find( string.format( &quot;%s.%d/%s&quot;, prefix, index, suffix_Y) )&#xa;    if series_x == nil then break end &#xa;    y = series_y:atTime(timestamp)&#xa;    &#xa;    new_series:push_back(x,y)&#xa;    index = index+1&#xa;  end&#xa;end&#xa;"/>
+   <scripts/>
+  </plugin>
+  <plugin ID="CSV Exporter"/>
+  <plugin ID="ROS /rosout Visualization"/>
+  <plugin ID="ROS Topic Re-Publisher"/>
+ </Plugins>
+ <!-- - - - - - - - - - - - - - - -->
+ <previouslyLoaded_Datafiles/>
+ <previouslyLoaded_Streamer name="ROS Topic Subscriber"/>
+ <!-- - - - - - - - - - - - - - - -->
+ <customMathEquations/>
+ <snippets/>
+ <!-- - - - - - - - - - - - - - - -->
+</root>

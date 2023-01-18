@@ -1,0 +1,15 @@
+use arm
+home1 = [0 0 0]
+go home1
+
+use hand
+x = [1.2 1.2]
+go x
+
+use arm
+p1 = [0 0 1]
+go p1
+
+use hand
+y = [0 0]
+go y

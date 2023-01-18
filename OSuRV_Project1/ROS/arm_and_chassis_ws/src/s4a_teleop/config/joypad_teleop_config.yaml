@@ -1,0 +1,26 @@
+teleop:
+  cartesian_twist_command:
+    type: topic
+    message_type: geometry_msgs/TwistStamped
+    topic_name: /servo_server/delta_twist_cmds
+    axis_mappings:
+      -
+        axis: 0 # L stick L- R+
+        target: twist.linear.x
+        scale: -1
+        offset: 0
+      -
+        axis: 1 # L stick D- U+
+        target: twist.linear.y
+        scale: 1
+        offset: 0
+      -
+        axis: 4 # R stick D- U+
+        target: twist.linear.z
+        scale: 1
+        offset: 0
+      -
+        axis: 3 # R stick R- L+
+        target: twist.angular.y
+        scale: 1
+        offset: 0

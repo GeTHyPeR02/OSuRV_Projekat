@@ -1,0 +1,32 @@
+<launch>
+	<arg name="en_debug" default="true" doc="Debug level on ROS debug"/>
+	<arg name="all_motors_sim" default="false" doc="Simulate moving of motors"/>
+	
+	
+	<env name="ROSCONSOLE_FORMAT" value="[${severity}] [${time}] [${node}]: ${message}"/>
+	
+	
+	
+	<node
+		name="simple_ackermann_steering_controller"
+		pkg="wc_main"
+		type="simple_ackermann_steering_controller"
+		output="screen"
+	>
+		<param name="all_motors_sim" type="bool" value="$(arg all_motors_sim)"/>
+		
+		<!-- Input topics -->
+		<remap from="motors_en" to="/wc/motors_en"/>
+		<remap from="cmd" to="/wc/cmd"/>
+		<!-- Output topics -->
+		<remap from="odom" to="/wc/odom"/>
+	</node>
+	<node
+		if="$(arg en_debug)"
+		name="set_log_level__simple_ackermann_steering_controller"
+		pkg="rosservice"
+		type="rosservice"
+		args="call /simple_ackermann_steering_controller/set_logger_level '{logger: 'ros.wc_main', level: 'debug'}'"
+	/>
+	
+</launch>

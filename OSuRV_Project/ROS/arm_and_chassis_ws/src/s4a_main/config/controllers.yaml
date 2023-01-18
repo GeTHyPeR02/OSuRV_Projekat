@@ -1,0 +1,50 @@
+s4a:
+    joints_fb:
+        type: joint_state_controller/JointStateController
+        publish_rate: 25
+    
+    jog_pos_ctrl:
+        type: position_controllers/JointGroupPositionController
+        joints:
+            - joint0_shoulder_pan
+            - joint1_shoulder_lift
+            - joint2_elbow
+            - joint3_index_finger
+    
+    traj_pos_ctrl:
+        arm:
+            type: position_controllers/JointTrajectoryController
+            joints:
+                - joint0_shoulder_pan
+                - joint1_shoulder_lift
+                - joint2_elbow
+            constraints:
+                goal_time: 0.6
+                stopped_velocity_tolerance: 0 # rad/s
+                joint0_shoulder_pan: {trajectory: 0.3, goal: 0.1}
+                joint1_shoulder_lift: {trajectory: 0.3, goal: 0.1}
+                joint2_elbow: {trajectory: 0.3, goal: 0.1}
+            stop_trajectory_duration: 0.5
+            state_publish_rate: 25
+            action_monitor_rate: 10
+        hand:
+            type: position_controllers/JointTrajectoryController
+            joints:
+                - joint3_index_finger
+                - joint4_middle_finger
+            constraints:
+                goal_time: 0.6
+                stopped_velocity_tolerance: 0 # rad/s
+                joint3_index_finger: {trajectory: 0.3, goal: 0.1}
+                joint4_middle_finger: {trajectory: 0.3, goal: 0.1}
+            stop_trajectory_duration: 0.5
+            state_publish_rate: 25
+            action_monitor_rate: 10
+    
+    servo_pos_ctrl:
+        type: position_controllers/JointGroupPositionController
+        joints:
+            - joint0_shoulder_pan
+            - joint1_shoulder_lift
+            - joint2_elbow
+            

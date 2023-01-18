@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: s4a_main
+    relative_path: urdf/arm.urdf.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/arm.srdf
+  CONFIG:
+    author_name: Milos Subotic
+    author_email: milos.subotic.sm@gmail.com
+    generated_timestamp: 1654375672

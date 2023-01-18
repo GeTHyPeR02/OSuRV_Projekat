@@ -1,0 +1,7 @@
+# Arm.
+home = [0 0 0]
+reach = [0 0 0]
+
+# Hand.
+closed_gripper = [0 0]
+opened_gripper = [1.2 1.2]

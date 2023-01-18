@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="arm">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="arm">
+        <joint name="virtual_joint"/>
+        <joint name="joint0_shoulder_pan"/>
+        <joint name="joint1_shoulder_lift"/>
+        <joint name="joint2_elbow"/>
+        <chain base_link="beam00_base" tip_link="beam2_hand_ee"/>
+    </group>
+    <group name="hand">
+        <link name="beam2_hand_ee"/>
+        <joint name="joint3_index_finger"/>
+        <joint name="joint4_middle_finger"/>
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="hand_ee" parent_link="beam2_hand_ee" group="hand"/>
+    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
+    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="beam00_base"/>
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="beam3_index_finger" link2="beam4_middle_finger" reason="Default"/>
+    <disable_collisions link1="beam3_index_finger" link2="beam2_hand_ee" reason="Adjacent"/>
+    <disable_collisions link1="beam4_middle_finger" link2="bearing00_base" reason="Never"/>
+    <disable_collisions link1="beam4_middle_finger" link2="beam2_forearm" reason="Never"/>
+    <disable_collisions link1="beam4_middle_finger" link2="beam2_hand_ee" reason="Adjacent"/>
+    <disable_collisions link1="beam4_middle_finger" link2="beam0_shoulder" reason="Never"/>
+    <disable_collisions link1="beam4_middle_finger" link2="bearing0_shoulder" reason="Never"/>
+    <disable_collisions link1="beam4_middle_finger" link2="bearing1_upper_arm" reason="Never"/>
+    <disable_collisions link1="beam00_base" link2="bearing00_base" reason="Adjacent"/>
+    <disable_collisions link1="beam00_base" link2="beam0_shoulder" reason="Never"/>
+    <disable_collisions link1="beam00_base" link2="bearing0_shoulder" reason="Never"/>
+    <disable_collisions link1="beam00_base" link2="beam1_upper_arm" reason="Never"/>
+    <disable_collisions link1="beam00_base" link2="bearing1_upper_arm" reason="Never"/>
+    <disable_collisions link1="bearing00_base" link2="beam2_forearm" reason="Never"/>
+    <disable_collisions link1="bearing00_base" link2="beam0_shoulder" reason="Adjacent"/>
+    <disable_collisions link1="bearing00_base" link2="bearing0_shoulder" reason="Never"/>
+    <disable_collisions link1="bearing00_base" link2="beam1_upper_arm" reason="Never"/>
+    <disable_collisions link1="bearing00_base" link2="bearing1_upper_arm" reason="Never"/>
+    <disable_collisions link1="beam2_forearm" link2="beam2_hand_ee" reason="Never"/>
+    <disable_collisions link1="beam2_forearm" link2="beam0_shoulder" reason="Never"/>
+    <disable_collisions link1="beam2_forearm" link2="bearing0_shoulder" reason="Never"/>
+    <disable_collisions link1="beam2_forearm" link2="beam1_upper_arm" reason="Never"/>
+    <disable_collisions link1="beam2_forearm" link2="bearing1_upper_arm" reason="Adjacent"/>
+    <disable_collisions link1="beam2_hand_ee" link2="beam0_shoulder" reason="Never"/>
+    <disable_collisions link1="beam2_hand_ee" link2="bearing1_upper_arm" reason="Never"/>
+    <disable_collisions link1="beam0_shoulder" link2="bearing0_shoulder" reason="Adjacent"/>
+    <disable_collisions link1="beam0_shoulder" link2="beam1_upper_arm" reason="Never"/>
+    <disable_collisions link1="beam0_shoulder" link2="bearing1_upper_arm" reason="Never"/>
+    <disable_collisions link1="bearing0_shoulder" link2="beam1_upper_arm" reason="Adjacent"/>
+    <disable_collisions link1="bearing0_shoulder" link2="bearing1_upper_arm" reason="Never"/>
+    <disable_collisions link1="beam1_upper_arm" link2="bearing1_upper_arm" reason="Adjacent"/>
+</robot>

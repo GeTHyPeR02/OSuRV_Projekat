@@ -1,0 +1,74 @@
+<launch>
+	<env name="ROSCONSOLE_FORMAT" value="[${severity}][${thread}][${node}/${function}:${line}]: ${message}"/>
+		
+	<node
+		name="mode_teleop"
+		pkg="common_teleop"
+		type="mode_teleop.py"
+		clear_params="true"
+		output="screen"
+		respawn="true"
+	>
+		<!-- Input topics -->
+		<remap from="joy" to="/joy" />
+		<!-- Output topics -->
+		<remap from="s4a/motors_en" to="/s4a/motors_en" />
+		<remap from="wc/motors_en" to="/wc/motors_en" />
+	</node>
+
+	
+	<node
+		name="tf_publish"
+		pkg="common_teleop"
+		type="tf_publish"
+		output="screen"
+		args="beam00_base beam2_hand_ee 25"
+	/>
+	
+	<!-- Joystick Device Argument -->
+	<arg name="joy_dev" default="/dev/input/js0"/>
+
+	<!-- Joy Node -->
+	<node
+		pkg="joy"
+		type="joy_node"
+		name="joy_drive"
+		clear_params="true"
+		output="screen"
+		respawn="true"
+	>
+		<param name="joy_dev" value="$(arg joy_dev)"/>
+		<param name="deadzone" value="0.12"/>
+		<param name="autorepeat_rate" value="25"/>
+		<!-- Output topics -->
+		<remap from="joy" to="/joy"/>
+	</node>
+	
+	
+	
+	<node
+		name="routines_teleop"
+		pkg="common_teleop"
+		type="routines_teleop.py"
+		clear_params="true"
+		output="screen"
+		respawn="true"
+	>
+		<!-- Input topics -->
+		<remap from="joy" to="/joy" />
+		<!-- Output topics -->
+		<remap from="run_routine" to="/common/run_routine"/>
+	</node>
+	
+	<node
+		name="routines_server"
+		pkg="common_teleop"
+		type="routines_server.py"
+		clear_params="true"
+		output="screen"
+		respawn="true"
+	>
+		<!-- Input topics -->
+		<remap from="run_routine" to="/common/run_routine" />
+	</node>
+</launch>

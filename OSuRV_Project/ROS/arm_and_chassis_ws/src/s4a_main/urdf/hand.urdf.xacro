@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+
+<robot name="arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+	
+	
+	<xacro:joint
+		parent="beam2_hand_ee"
+		name="joint3_index_finger"
+		child="beam3_index_finger"
+		lo_lim="0"
+		up_lim="70"
+		yaw="-90" x="${30/2}" z="${-40/2}" y="${+20/2}"
+	/>
+	<xacro:beam
+		name="beam3_index_finger"
+		mat="wood"
+		size="20" L="80"
+		roll="90" y="${+80/2}" z="${-20/2}"
+	/>
+	
+	<xacro:joint
+		parent="beam2_hand_ee"
+		name="joint4_middle_finger"
+		child="beam4_middle_finger"
+		lo_lim="0"
+		up_lim="70"
+		pitch="180" yaw="90" x="${30/2}" z="${-40/2}" y="${-20/2}"
+	/>
+	<xacro:beam
+		name="beam4_middle_finger"
+		mat="wood"
+		size="20" L="80"
+		roll="90" y="${-80/2}" z="${+20/2}"
+	/>
+	
+</robot>

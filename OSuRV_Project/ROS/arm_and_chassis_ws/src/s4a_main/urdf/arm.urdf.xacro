@@ -1,0 +1,113 @@
+<?xml version="1.0" ?>
+
+<robot name="arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:include filename="$(find s4a_main)/urdf/helper_macros.xacro"/>
+
+	<gazebo>
+		<plugin name="ros_control" filename="libgazebo_ros_control.so">
+			<!--robotNamespace>/</robotNamespace-->
+			<!--robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType-->
+		</plugin>
+	</gazebo>
+
+	<link name="world" />
+	<joint name="fixjoint00_world" type="fixed">
+		<parent link="world" />
+		<child link = "beam00_base" />
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+	</joint>
+	 <!-- Along x-axis and bottom to (0, 0, 0). -->
+	<xacro:beam
+		name="beam00_base"
+		size="50" L="100"
+		roll="90" yaw="90" z="25"
+	/>
+	<xacro:weld
+		parent="beam00_base"
+		name="weld00_base"
+		child="bearing00_base"
+		z="50"
+	/>
+	<xacro:bearing
+		name="bearing00_base"
+		L="10" z="5"
+	/>
+
+	<xacro:joint
+		parent="bearing00_base"
+		name="joint0_shoulder_pan"
+		child="beam0_shoulder"
+		lo_lim="-90"
+		up_lim="90"
+		z="10"
+	/>
+	<xacro:beam
+		name="beam0_shoulder"
+		size="50" L="200"
+		y="-${50/2}" z="${200/2}"
+	/>
+
+	<xacro:weld
+		parent="beam0_shoulder"
+		name="weld0_shoulder"
+		child="bearing0_shoulder"
+		roll="-90" z="${200-25}" y="0"
+	/>
+	<xacro:bearing
+		name="bearing0_shoulder"
+		L="10" z="5"
+	/>
+
+	<xacro:joint
+		parent="bearing0_shoulder"
+		name="joint1_shoulder_lift"
+		child="beam1_upper_arm"
+		lo_lim="-90"
+		up_lim="80"
+		yaw="180" z="10"
+	/>
+	<xacro:beam
+		name="beam1_upper_arm"
+		size="50" L="500"
+		roll="90" z="${50/2}" y="${+(500/2-50/2)}"
+	/>
+	<xacro:weld
+		parent="beam1_upper_arm"
+		name="weld1_upper_arm"
+		child="bearing1_upper_arm"
+		pitch="180" yaw="-90" y="${+(500-2*50/2)}"
+	/>
+	<xacro:bearing
+		name="bearing1_upper_arm"
+		L="10" z="5"
+	/>
+
+	<xacro:joint
+		parent="bearing1_upper_arm"
+		name="joint2_elbow"
+		child="beam2_forearm"
+		lo_lim="-50"
+		up_lim="80"
+		yaw="180" z="10"
+	/>
+	<xacro:beam
+		name="beam2_forearm"
+		size="40" L="400"
+		roll="90" z="${40/2}" y="${+(400/2-40/2)}"
+	/>
+	<xacro:invisible_joint
+		parent="beam2_forearm"
+		name="fixjoint2_hand_ee"
+		child="beam2_hand_ee"
+		roll="-90" yaw="+90" z="${40/2}" y="${+(400-40/2)}"
+	/>
+	<xacro:beam
+		name="beam2_hand_ee"
+		mat="alu_ee"
+		size="40" L="30"
+		pitch="90" x="${30/2}"
+	/>
+	
+	<xacro:include filename="$(find s4a_main)/urdf/hand.urdf.xacro"/>
+</robot>

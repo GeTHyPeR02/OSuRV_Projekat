@@ -1,0 +1,178 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<material name="alu">
+		<!-- blue -->
+		<color rgba="0 0 0.8 1"/>
+	</material>
+
+	<material name="bearing">
+		<!-- red -->
+		<color rgba="0.8 0.0 0.0 1"/>
+	</material>
+	
+	<material name="wood">
+		<!-- green -->
+		<color rgba="0 0.8 0 1"/>
+	</material>
+
+	<material name="alu_ee">
+		<!-- blue -->
+		<color rgba="0 0.8 0.8 1"/>
+	</material>
+
+	<xacro:macro
+		name="beam"
+		params="name size L x:=0 y:=0 z:=0 roll:=0 pitch:=0 yaw:=0 mat:=alu"
+	>
+		<link name="${name}">
+			<visual>
+				<origin
+					xyz="${x*1e-3} ${y*1e-3} ${z*1e-3}"
+					rpy="${radians(roll)} ${radians(pitch)} ${radians(yaw)}"
+				/>
+				<geometry>
+					<box size="${size*1e-3} ${size*1e-3} ${L*1e-3}"/>
+				</geometry>
+				<material name="${mat}"/>
+			</visual>
+			<collision>
+				<origin
+					xyz="${x*1e-3} ${y*1e-3} ${z*1e-3}"
+					rpy="${radians(roll)} ${radians(pitch)} ${radians(yaw)}"
+				/>
+				<geometry>
+					<box size="${size*1e-3} ${size*1e-3} ${L*1e-3}"/>
+				</geometry>
+			</collision>
+			<!-- TODO Calc -->
+			<inertial>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				<mass value="0.0001" />
+				<inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+			</inertial>
+		</link>
+		<!-- TODO What is this anyway? -->
+		<gazebo reference="${name}">
+			<selfCollide>true</selfCollide>
+		</gazebo>
+	</xacro:macro>
+	
+	
+	<xacro:macro 
+		name="weld"
+		params="name parent child x:=0 y:=0 z:=0 roll:=0 pitch:=0 yaw:=0"
+	>
+		<joint name="${name}" type="fixed">
+			<origin
+				xyz="${x*1e-3} ${y*1e-3} ${z*1e-3}"
+				rpy="${radians(roll)} ${radians(pitch)} ${radians(yaw)}"
+			/>
+			<parent link="${parent}"/>
+			<child link="${child}"/>
+		</joint>
+	</xacro:macro>
+
+	<xacro:macro 
+		name="bearing"
+		params="name L x:=0 y:=0 z:=0 roll:=0 pitch:=0 yaw:=0"
+	>
+		<link name="${name}">
+			<visual>
+				<origin
+					xyz="${x*1e-3} ${y*1e-3} ${z*1e-3}"
+					rpy="${radians(roll)} ${radians(pitch)} ${radians(yaw)}"
+				/>
+				<geometry>
+					<cylinder radius="${15*1e-3}" length="${L*1e-3}" />
+				</geometry>
+				<material name="bearing"/>
+			</visual>
+			<collision>
+				<origin
+					xyz="${x*1e-3} ${y*1e-3} ${z*1e-3}"
+					rpy="${radians(roll)} ${radians(pitch)} ${radians(yaw)}"
+				/>
+				<geometry>
+					<cylinder radius="${30*1e-3}" length="${L*1e-3}" />
+				</geometry>
+			</collision>
+			<!-- TODO Calc -->
+			<inertial>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				<mass value="0.00001" />
+				<inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+			</inertial>
+		</link>
+	</xacro:macro>
+	
+	<xacro:macro 
+		name="joint"
+		params="name parent child lo_lim:=-180 up_lim:=180 x:=0 y:=0 z:=0 roll:=0 pitch:=0 yaw:=0"
+	>
+		<joint name="${name}" type="revolute">
+			<axis xyz="0 0 1" />
+			<limit
+				effort="100.0"
+				lower="${radians(lo_lim)}"
+				upper="${radians(up_lim)}"
+				velocity="1.25"
+			/>
+			<!-- <safety_controller
+				k_velocity="100.0"
+			/> -->
+			<origin
+				xyz="${x*1e-3} ${y*1e-3} ${z*1e-3}"
+				rpy="${radians(roll)} ${radians(pitch)} ${radians(yaw)}"
+			/>
+			<parent link="${parent}"/>
+			<child link="${child}"/>
+		</joint>
+		<transmission name="${name}_trans">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${name}">
+				<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+			</joint>
+			<actuator name="${name}_motor">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+	</xacro:macro>
+	
+	<xacro:macro 
+		name="prismatic_joint"
+		params="name parent child lo_lim up_lim x:=0 y:=0 z:=0 roll:=0 pitch:=0 yaw:=0"
+	>
+		<joint name="${name}" type="prismatic">
+			<axis xyz="0 1 0" />
+			<limit
+				effort="100.0"
+				lower="${lo_lim*1e-3}"
+				upper="${up_lim*1e-3}"
+				velocity="100"
+			/>
+			<origin
+				xyz="${x*1e-3} ${y*1e-3} ${z*1e-3}"
+				rpy="${radians(roll)} ${radians(pitch)} ${radians(yaw)}"
+			/>
+			<parent link="${parent}"/>
+			<child link="${child}"/>
+		</joint>
+	</xacro:macro>
+	
+	<xacro:macro 
+		name="invisible_joint"
+		params="name parent child x:=0 y:=0 z:=0 roll:=0 pitch:=0 yaw:=0"
+	>
+		<joint name="${name}" type="fixed">
+			<axis xyz="0 0 1" />
+			<origin
+				xyz="${x*1e-3} ${y*1e-3} ${z*1e-3}"
+				rpy="${radians(roll)} ${radians(pitch)} ${radians(yaw)}"
+			/>
+			<parent link="${parent}"/>
+			<child link="${child}"/>
+		</joint>
+	</xacro:macro>
+
+</robot>

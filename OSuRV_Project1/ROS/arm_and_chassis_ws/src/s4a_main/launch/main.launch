@@ -1,0 +1,118 @@
+<launch>
+	<arg name="en_debug" default="true" doc="Debug level on ROS debug"/>
+	<arg name="all_motors_sim" default="false" doc="Simulate moving of motors"/>
+	<arg name="on_chassis" default="false" doc="Indicate that arm is on chassis"/>
+	
+	
+	<env name="ROSCONSOLE_FORMAT" value="[${severity}] [${time}] [${node}]: ${message}"/>
+	
+	
+	
+	
+	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find s4a_main)/urdf/arm.urdf.xacro'"/>
+
+	<node
+		name="robot_hardware_interface"
+		pkg="s4a_main"
+		type="robot_hardware_interface"
+		output="screen"
+	>
+		<param name="log_joint_states" type="bool" value="$(arg en_debug)"/>
+		<param name="all_motors_sim" type="bool" value="$(arg all_motors_sim)"/>
+		<param name="offset_channels" type="bool" value="$(arg on_chassis)"/>
+		
+		<remap from="motors_en" to="/s4a/motors_en"/>
+	</node>
+	<node
+		if="$(arg en_debug)"
+		name="set_log_level__robot_hardware_interface"
+		pkg="rosservice"
+		type="rosservice"
+		args="call /robot_hardware_interface/set_logger_level '{logger: 'ros.s4a_main', level: 'debug'}'"
+	/>
+	
+	
+	<!-- 
+		Setup controllers. Load for jog mode i.e. for calibration.
+	-->
+	<rosparam file="$(find s4a_main)/config/controllers.yaml" command="load"/>
+	<node
+		name="controller_spawner__fb"
+		pkg="controller_manager"
+		type="controller_manager"
+		respawn="false"
+		output="screen"
+		args="spawn /s4a/joints_fb"
+	/>
+	<node
+		name="controller_spawner__jog"
+		pkg="controller_manager"
+		type="controller_manager"
+		respawn="false"
+		output="screen"
+		args="spawn /s4a/jog_pos_ctrl"
+	/>
+	<node
+		name="controller_spawner__traj_arm"
+		pkg="controller_manager"
+		type="controller_manager"
+		respawn="false"
+		output="screen"
+		args="load /s4a/traj_pos_ctrl/arm"
+	/>
+	<node
+		name="controller_spawner__traj_hand"
+		pkg="controller_manager"
+		type="controller_manager"
+		respawn="false"
+		output="screen"
+		args="load /s4a/traj_pos_ctrl/hand"
+	/>
+	<node
+		name="controller_spawner__servo"
+		pkg="controller_manager"
+		type="controller_manager"
+		respawn="false"
+		output="screen"
+		args="load /s4a/servo_pos_ctrl"
+	/>
+
+
+	<include
+		file="$(find s4a_moveit_config)/launch/demo.launch"
+	>
+		<arg name="moveit_controller_manager" value="simple"/>
+		<arg name="use_rviz" default="false"/>
+		<!-- <arg name="debug" value="$(arg en_debug)"/> -->
+	</include>
+	<!-- Because simple controller does not spawn robot_state_publisher -->
+	<node 
+		name="robot_state_publisher"
+		pkg="robot_state_publisher"
+		type="robot_state_publisher"
+		respawn="true"
+		output="screen"
+	/>
+	
+
+
+	<arg name="plotjuggler_cfg" value="plot/all.xml"/>
+	<node
+if="false"
+		name="plotjuggler"
+		pkg="plotjuggler"
+		type="plotjuggler"
+		args="--layout $(find s4a_main)/config/$(arg plotjuggler_cfg)"
+	/>
+	
+	<!-- TODO This is gui control instead of cmd. -->
+	<!--<arg name="use_gui" default="true" doc="Should the joint_state_publisher use a GUI for controlling joint states" />
+	<node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui" output="screen"/>-->
+
+	<!-- GUI for cmds. -->
+	<!-- <node name="rqt_publisher" pkg="rqt_publisher" type="rqt_publisher"/> -->
+	<!-- To config PID. -->
+	<!-- <node name="rqt_reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure"/> -->
+	<!-- <node name="rqt_plot" pkg="rqt_plot" type="rqt_plot"/> -->
+	
+</launch>

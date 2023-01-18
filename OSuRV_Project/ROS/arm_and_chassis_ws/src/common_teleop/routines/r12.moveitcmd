@@ -1,0 +1,10 @@
+use hand
+x = [1.2 1.2]
+y = [0 0]
+
+go x
+go y
+
+use arm
+home = [0 0 0]
+go home

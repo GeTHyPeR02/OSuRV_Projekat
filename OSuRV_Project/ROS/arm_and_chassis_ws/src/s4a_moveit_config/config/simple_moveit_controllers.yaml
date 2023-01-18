@@ -1,0 +1,16 @@
+controller_list:
+  - name: /s4a/traj_pos_ctrl/arm
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - joint0_shoulder_pan
+      - joint1_shoulder_lift
+      - joint2_elbow
+  - name: /s4a/traj_pos_ctrl/hand
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - joint3_index_finger
+      - joint4_middle_finger

@@ -1,0 +1,110 @@
+#!/usr/bin/env python3
+# encoding: utf-8
+
+'''
+@author: Milos Subotic <milos.subotic.sm@gmail.com>
+@license: MIT
+
+'''
+
+###############################################################################
+
+import os
+import sys
+
+import glob
+import waflib
+
+###############################################################################
+
+one_file_programs = [
+	'test_pwm.c',
+	'test_servos.c',
+	'test_bldc.c',
+	'test_pwm_map.cpp'
+]
+
+def options(opt):
+	opt.load('gcc gxx')
+	
+	opt.add_option(
+		'--app',
+		dest = 'app',
+		default = None,
+		help = 'App to be run'
+	)
+	
+def configure(cfg):
+	cfg.load('gcc gxx')
+	
+	cfg.env.append_value('CXXFLAGS', '-std=c++11')
+	#cfg.env.append_value('LIB', 'pthread')
+	cfg.env.append_value('CXXFLAGS', '-g -rdynamic'.split()) # For debug.
+
+	motor_ctrl_driver = cfg.srcnode.find_node(
+		'../../Driver/motor_ctrl/'
+	)
+	cfg.check(
+		uselib_store = 'motor_ctrl_driver',
+		msg = "Checking for stuff from 'motor_ctrl' driver",
+		header_name = 'motor_ctrl.h',
+		includes = str(motor_ctrl_driver.find_node('include')),
+		features = 'cxx cxxprogram',
+		mandatory = True
+	)
+
+def build(bld):
+	for s in one_file_programs:
+		p, ext = os.path.splitext(s)
+		bld.program(
+			target = p,
+			source = s,
+			use = 'motor_ctrl_driver',
+			install_path = False
+		)
+
+def expand_app(app):
+	sufixes = ['', '.exe', '.elf']
+	prefixes = ['', 'app_', 'example_', 'test_']
+	
+	programs = []
+	for g in glob.glob('build/*'):
+		if os.path.isfile(g):
+			b= os.path.split(g)[1]
+			root, ext = os.path.splitext(b)
+			if ext in sufixes:
+				programs.append(b)
+	
+	possible_a = []
+	for p in programs:
+		for prefix in prefixes:
+			if p.startswith(prefix + app):
+				#a = p
+				a, _ = os.path.splitext(p) # Split elf for AVR
+				possible_a.append(a)
+	possible_a.sort()
+	
+	if len(possible_a) == 0 or app in possible_a:
+		a = app
+	else:
+		a = possible_a[0]
+		
+	return os.path.join('build', a)
+
+def run(ctx):
+	if ctx.options.app:
+		cmd = expand_app(ctx.options.app)
+		ctx.exec_command2(cmd)
+
+###############################################################################
+
+def exec_command2(self, cmd, **kw):
+	# Log output while running command.
+	kw['stdout'] = None
+	kw['stderr'] = None
+	ret = self.exec_command(cmd, **kw)
+	if ret != 0:
+		self.fatal('Command "{}" returned {}'.format(cmd, ret))
+setattr(waflib.Context.Context, 'exec_command2', exec_command2)
+
+###############################################################################
